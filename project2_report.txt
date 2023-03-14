@@ -1,0 +1,94 @@
+Team Members -
+1. Basic information Member 1
+Student ID : 00001650082
+Student Name : Shweta Deshmukh
+OS (bit) : macOS 12.6
+gcc version : 12.2.0
+
+2. Basic information Member 2
+Student ID : 00001651038
+Student Name : Radhika Joshi
+OS (bit) : macOS 12.5
+gcc version : 12.2.0
+
+3. Basic information Member 3
+Student ID : 00001650216
+Student Name : Siddhi Powar
+OS (bit) : Windows 64 bit
+gcc version : 12.2.0
+
+2. Meta-data
+- Show your meta-data design (Tables and Columns table) and information about each column.
+
+    Tables Catalog:
+    There are 3 tables in table catalog:
+    1. Tables.tbl
+    2. Columns.tbl
+    3. Employee.tbl
+
+ Columns Catalog:
+    Columns in column table are linked with table-ids
+    Column records are:
+    1. table-id
+    2. table-Name
+    3. file-Name
+    4. table-id
+    5. column-Name
+    6. column-type
+    7. column-length
+    8. column-position
+    9. empname
+    10. age
+    11. height
+    12. salary
+
+3. Internal Record Format
+- Show your record format design and describe how your design satisfies O(1) field access. If not, just mention that your team hasn't implemented this feature.
+ Not implemented in O(1) field access.
+- Describe how you store a VarChar field.
+To store the VarChar field, store the length of the field in 4 bytes followed by the actual string.
+
+- Describe how you deal with an update and delete.
+  
+  
+
+
+4. Page Format
+- Show your page format design.
+
+|---------+---------+---------+----+---------+--------------------------------------------------------------------------------------------------|
+| *******************************************| <----Page 0 : The start of this page is stored in a pointer called PAGE_START. This allows       |
+| **********************#####################| for the abstraction of the hidden data. Each page is 4096 bytes long. The records are inserted   |
+| ########################################## | starting from the 0th field while the record directory data starts growing from the 4095th field |                                |
+|         |         |         |    |         |                                                                                                  |
+|         |         |         |    |         |                                                                                                  |
+|--------------------------------------------|                                                                                                  |
+|         |         |         |    | LENGTH# |                                                                                                  |
+|--------------------------------------------|                                                                                                  |
+| OFFSET# | LENGTH* | OFFSET* | FS | N       |                                                                                                  |
+|---------+---------+---------+----+---------+--------------------------------------------------------------------------------------------------|
+
+- Describe how you deal with an update and delete.
+
+ Update-> If all the records in a page are updated then depending on whether the new records can be fit into the current page or not, the updated records will have tombstone indicators set to 1 and have the tombstones RIDs pointing to the new updated records position. And the records in the page will be compacted or expanded depending on the size of the new record.
+
+Delete-> If all the records in a page are deleted then the slot offset of each of the record in the slot directory will be set to USHRT_MAX = 65535 value. The free space position is incrementally reduced by the length of each deleted record, so finally the free space position will be at 0. The slot directory will still contain all the deleted slots with slot offset = USHRT_MAX. Page will be available for next insert or update of a new record.
+
+5. File Format
+- Show your file format design
+  
+  File consists of multiple pages.
+  Each page is of 4096 bytes which is PAGE_SIZE
+
+
+6. Implementation Detail
+- Other implementation details goes here.
+
+  The user won't be able to modify systems tables that are Tables.tbl and Columns.tbl
+  The scan() scans each record until a given condition is met or end of file is encountered.
+  when table name is given, table descriptor is found first. tables.tbl is scanned to get table-id and columns.tbl is scanned to get the matching table-id.
+  the tuple can be updated, inserted, deletled and read.
+
+7. Other (optional)
+- Freely use this section to tell us about things that are related to the project 2, but not related to the other sections (optional)
+

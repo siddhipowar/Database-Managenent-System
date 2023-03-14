@@ -1,0 +1,59 @@
+Team Members -
+1. Basic information Member 1
+Student ID : 00001650082
+Student Name : Shweta Deshmukh
+OS (bit) : macOS 12.6
+gcc version : 12.2.0
+
+2. Basic information Member 2
+Student ID : 00001651038
+Student Name : Radhika Joshi
+OS (bit) : macOS 12.5
+gcc version : 12.2.0
+
+3. Basic information Member 3
+Student ID : 00001650216
+Student Name : Siddhi Powar
+OS (bit) : Windows 64 bit
+gcc version : 12.2.0
+
+
+
+2. Catalog information about Index
+- Show your catalog information about an index (tables, columns).
+
+
+3. Block Nested Loop Join (If you have implemented this feature)
+- Describe how your block nested loop join works (especially, how you manage the given buffers.)
+
+Working of Nested Loop join is:
+1. Read records from left table until numPages have been read and it forms in-memory hash table.
+2. Read one record at a time from the right table and probe it.
+3. Store matching records from left and right table. Return the top of that queue.
+4. Once all records have been joined, read next tuple and repeat these steps.
+4. Index Nested Loop Join (If you have implemented this feature)
+- Describe how your grace hash join works.
+
+
+5. Grace Hash Join (If you have implemented this feature)
+- Describe how your grace hash join works (especially, in-memory structure).
+
+
+6. Aggregation
+- Describe how your aggregation (basic, group-based hash) works.
+
+  basic:
+ - scan iterator is the attribute on which aggregation is performed. The aggregate operator is stored as data members in Aggreagate class.
+ - getNextTuple is called by iterator to read that tuple and it gets the vale of that atrribute on which aggregation operation is performed.
+ - Iteration happens till end of the file.
+
+7. Implementation Detail
+- Have you added your own source file (.cc or .h)?
+
+- Have you implemented any optional features? Then, describe them here.
+
+- Other implementation details:
+
+
+6. Other (optional)
+- Freely use this section to tell us about things that are related to the project 4, but not related to the other sections (optional)

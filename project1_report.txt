@@ -1,0 +1,56 @@
+Team Members -
+1. Basic information Member 1
+Student ID : 00001650082
+Student Name : Shweta Deshmukh
+OS (bit) : macOS 12.6
+gcc version : 12.2.0
+
+2. Basic information Member 2
+Student ID : 00001651038
+Student Name : Radhika Joshi
+OS (bit) : macOS 12.
+
+
+3. Basic information Member 3
+Student ID : 00001650216
+Student Name : Siddhi Powar
+OS (bit) : Windows 64 bit
+gcc version : --
+
+
+2. Internal Record Format
+- Show your record format design and describe how your design satisfies O(1) field access. If not, just mention that you haven't implemented this feature.
+O(1) field access is not satisfied by our design.
+- Describe how you store a VarChar field.
+To store the VarChar field, store the length of the field in 4 bytes followed by the actual string.
+
+
+3. Page Format
+A page contains records in slots. Page also has a slot directory having references of records. Records structure is defined by record descriptor.
+Records are identified by record identifier (RID) which contains pageNum reference as well as slotNum reference.
+
+
+
+4. Implementation Detail
+We implemented class PagedFileManager's methods as follow :
+    1. createFile() - Creates a file. Implemented by Shweta.
+    2. destroyFile() - Destroys a file. Implemented by Shweta.
+    3. openFile() - Opens an existing file. Implemented by Radhika.
+    4. closeFile() - Closes an existing file. Implemented by Radhika.
+
+We implemented class FileHandle's methods as follow :
+    1. readPage() - Reads a page based on the page number provided if the page exists. Implemented by Shweta.
+    2. writePage() - Writes a page based on the page number provided if the page exists. Implemented by Radhika.
+    3. appendPage() - Appends a new page to the end of file. Implemented by Siddhi.
+    4. getNumberOfPages() - Returns total number of pages in a file by reading from hidden page using struct NWRA (defined in pfm.h). Implemented by Radhika.
+    5. collectCounterValues() - Returns file specific values for the counters (read, write, append). Implemented by Siddhi.
+
+We implemented class RecordBasedFileManager as follow:
+    1. createFile() - Calls the createFile() method from pfm. Implemented by Shweta.
+    2. destroyFile() - Calls the destroyFile() method from pfm. Implemented by Siddhi.
+    3. openFile() - Calls the openFile() method from pfm. Implemented by Shweta.
+    4. closeFile() - Calls the closeFile() method from pfm. Implemented by Siddhi.
+    5. insertRecord() - Implementation in progress by Shweta.
+    6. readRecord() - Implementation in progress by Siddhi.
+    7. printRecord() - Implementation in progress by Radhika.
+
